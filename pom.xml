@@ -191,7 +191,7 @@
           <stopPort>9966</stopPort>
         </configuration>
       </plugin>
-
+    <!--generator自动生成代码文件配置-->
       <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -202,7 +202,7 @@
         </configuration>
       </plugin>
     </plugins>
-
+    <!--静态资源文件打包，若是不添加如下配置，服务器无法将xml等p配置文件加载进去-->
     <resources>
       <resource>
         <directory>src/main/java</directory>
