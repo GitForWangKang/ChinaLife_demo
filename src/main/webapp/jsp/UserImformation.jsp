@@ -30,7 +30,21 @@
 <body>
 <script>
     $(document).ready( function () {
-        $('#table_id_example').DataTable();
+        $('#table_id_example').DataTable({
+            "ordering": true,  //排序
+            "paging": true,  //分页
+            "processing": true,  //当处理大数据时，处理过程耗费的时间很明显，这个功能就显得非常有用
+            "language": {
+                "info": " 当前页面是第_PAGE_页，总计 _PAGES_页  <div>总计：_MAX_行</div>",
+                "infoEmpty": "查询失败，暂无数据",
+                "lengthMenu": "显示 _MENU_ 条记录",
+                "paginate": {
+                    "Previous": "上一页",
+                    "next": "下一页"
+                },
+                "search": "搜索  :"
+            }
+        });
     } );
 
 </script>
