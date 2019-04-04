@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinaLife.dao.UserImformationMapper" >
+  <resultMap id="BaseResultMap" type="com.chinaLife.model.UserImformation" >
+    <id column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Adress" property="adress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserName, Phone, Adress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserImformation
+    where UserName = #{username,jdbcType=VARCHAR}
+  </select>
+  <!--查询queryAllUserTable，显示数据对应表的全部信息，无参数的，返回值为该对象-->
+  <select id="queryAllUserTable" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from UserImformation
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UserImformation
+    where UserName = #{username,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinaLife.model.UserImformation" >
+    insert into UserImformation (UserName, Phone, Adress
+      )
+    values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinaLife.model.UserImformation" >
+    insert into UserImformation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="adress != null" >
+        Adress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinaLife.model.UserImformation" >
+    update UserImformation
+    <set >
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        Adress = #{adress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UserName = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinaLife.model.UserImformation" >
+    update UserImformation
+    set Phone = #{phone,jdbcType=VARCHAR},
+      Adress = #{adress,jdbcType=VARCHAR}
+    where UserName = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>
